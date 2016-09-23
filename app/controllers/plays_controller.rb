@@ -1,19 +1,19 @@
 class PlaysController < ApplicationController
   before_action :find_play, only: [:show, :edit, :update, :destroy]
-  
+  before_action :authenticate_user!
   def index
     @plays= Play.all.order("created_at DESC")
   end
   
   def new
-    @play = Play.new
+    @play = current_user.play.build
   end
    
   def show
   end
 
   def create
-    @play = Play.new(play_params)
+    @play = current_user.play.build(play_params)
     
     if @play.save
       redirect_to root_path
