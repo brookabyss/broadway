@@ -25,5 +25,7 @@ class PlaysController < ApplicationController
   
   private
   
+  def find_play
+  end
   
 end
