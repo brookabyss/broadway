@@ -17,6 +17,11 @@ class PlaysController < ApplicationController
   end
    
   def show
+    if @play.reviews.blank?
+		 @average_review = 0
+		else
+			@average_review = @play.reviews.average(:rating).round(2)
+		end
   end
 
   def create
