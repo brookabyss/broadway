@@ -1,7 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :review_params
-  
-  
+  before_action :find_play
   
   def new
     @review= Review.new
@@ -11,12 +9,13 @@ class ReviewsController < ApplicationController
     @review= Review.new(review_params)
     @review.play_id= @play.id
     @review.user_id= current_user.id
-  end
   
   if @review.save
     redirect_to play_path(@play)
   else
     render 'new'
+  end
+  
   end
   
   private
